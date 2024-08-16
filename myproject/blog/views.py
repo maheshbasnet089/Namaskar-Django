@@ -7,3 +7,6 @@ def renderRegisterForm(request):
 
 def renderLoginForm(request):
     return render(request,'auth/login.html')
+
+def renderHomepage(request):
+    return render(request,'home/index.html')
