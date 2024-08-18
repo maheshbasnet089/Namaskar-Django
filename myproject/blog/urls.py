@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import renderRegisterForm,renderLoginForm,renderHomepage
+from .views.auth_view import renderRegisterForm,renderLoginForm
+from .views.home_view import renderHomepage
 
 urlpatterns  = [
     path('',renderHomepage),
