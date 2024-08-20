@@ -1,7 +1,7 @@
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login
 from django.contrib import messages
 
 def renderRegisterForm(request):
@@ -13,10 +13,11 @@ def renderRegisterForm(request):
       user = User.objects.create(
         username = username, 
         email = email, 
+        password = password
       )
-      print(user)
       user.set_password(password)
       user.save()
+      print(user)
       return redirect('/blog/login')
 
     else:
@@ -29,6 +30,7 @@ def renderLoginForm(request):
         password = request.POST['password']
         user = authenticate(request,email=email,password=password)
         if user is not None: 
+            login(request,user)
             return redirect('/')
         else: 
             messages.error(request,"Invalid email or password")
