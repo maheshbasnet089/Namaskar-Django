@@ -13,11 +13,10 @@ def renderRegisterForm(request):
       user = User.objects.create(
         username = username, 
         email = email, 
-        password = password
       )
       user.set_password(password)
       user.save()
-      print(user)
+      print(user, "User")
       return redirect('/blog/login')
 
     else:
