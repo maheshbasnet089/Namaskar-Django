@@ -106,7 +106,8 @@
             <p class="mt-2 text-lg leading-8 text-gray-600">Share your thoughts with the world.</p>
         </div>
 
-        <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20" enctype="multipart/form-data">
+        <form action="/blog/create/" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20" enctype="multipart/form-data">
+          {% csrf_token %}
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div class="sm:col-span-2">
                     <label for="title" class="block text-sm font-semibold leading-6 text-black">Title</label>
