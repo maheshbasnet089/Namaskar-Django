@@ -21,6 +21,8 @@ def renderRegisterForm(request):
         return render(request,'auth/register.html')
 
 def renderLoginForm(request):
+    next_url = request.GET.get('next', '/')
+
     if request.method == 'POST':
       username = request.POST['username']
       password = request.POST['password']
@@ -28,7 +30,7 @@ def renderLoginForm(request):
       print(user)
       if user is not None:
         login(request,user)
-        return redirect('/') 
+        return redirect('/blog/create') 
       else:
          messages.error(request,"Invalid username or password")
          return redirect("/blog/login")
