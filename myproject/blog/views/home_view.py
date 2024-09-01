@@ -64,3 +64,6 @@ def delete_blog(request, blog_id):
             return redirect('blog_detail', blog_id=blog.id)
 
     return render(request, 'home/delete_blog.html', {'blog': blog})
+
+def profile(request):
+    return render(request,'home/profile.html')
