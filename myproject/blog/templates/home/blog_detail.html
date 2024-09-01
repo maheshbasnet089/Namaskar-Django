@@ -76,6 +76,9 @@
                 <h2 class="text-xl text-gray-600 mt-2">{{ blog.subtitle }}</h2>
 
                 <p class="mt-4 text-gray-700">{{ blog.description }}</p>
+                <form action="{% url 'delete_blog' blog.id %}" method="get">    
+                <button class="bg-red-500 px-4 py-2 rounded-md hover:bg-red-700"> Delete Me </button>
+                </form>
             </div>
 
             <div class="flex items-center p-6 border-t border-gray-300">
