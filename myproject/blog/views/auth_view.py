@@ -25,13 +25,14 @@ def renderRegisterForm(request):
 
 def renderLoginForm(request):
     if request.method == 'POST':
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request,email=email,password=password)
+        user = authenticate(request,username=username,password=password)
+        print(username,password,user)
         if user is not None: 
             login(request,user)
-            return redirect('/')
+            return redirect('/blog')
         else: 
-            messages.error(request,"Invalid email or password")
+            messages.error(request,"Invalid username or password")
             return redirect('/blog/login')
     return render(request,'auth/login.html')
