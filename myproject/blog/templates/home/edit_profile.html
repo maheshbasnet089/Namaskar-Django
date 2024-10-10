@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+</head>
+<body>
+    {% include "../components/_navbar.html" %}
+    
+    <div class="max-w-xl mx-auto mt-16 bg-white shadow-xl rounded-lg p-6">
+        <h2 class="text-center text-2xl font-bold mb-6">Edit Profile</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit" class="block w-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

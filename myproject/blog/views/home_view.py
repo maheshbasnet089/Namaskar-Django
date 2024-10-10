@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Blog
+from ..models import Blog, Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from ..forms import ProfileForm
 
 # Create your views here.
 
@@ -65,5 +66,23 @@ def delete_blog(request, blog_id):
 
     return render(request, 'home/delete_blog.html', {'blog': blog})
 
+@login_required
 def profile(request):
-    return render(request,'home/profile.html')
+    profile = Profile.objects.get(user=request.user)
+    return render(request, 'home/profile.html', {'profile': profile})
+
+
+@login_required
+def edit_profile(request):
+    profile = Profile.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to profile page after saving
+    else:
+        form = ProfileForm(instance=profile)
+    
+    return render(request, 'home/edit_profile.html', {'form': form})
+
